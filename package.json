@@ -1,0 +1,35 @@
+{
+  "name": "vgctrans-data",
+  "version": "1.0.0",
+  "description": "data crawler for vgctrans",
+  "main": "main.js",
+  "scripts": {
+    "test": "tsc && node out/main.js",
+    "compile": "tsc main.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ezel/vgctrans-data.git"
+  },
+  "keywords": [
+    "vgc",
+    "crawler",
+    "typescript"
+  ],
+  "author": "martin",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ezel/vgctrans-data/issues"
+  },
+  "homepage": "https://github.com/ezel/vgctrans-data#readme",
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "node-html-parser": "^6.1.12",
+    "puppeteer": "^22.6.1",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}
