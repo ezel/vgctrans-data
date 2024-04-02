@@ -1,6 +1,7 @@
 import puppeteer from "puppeteer-extra";
 import createPuppeteerStealth from "puppeteer-extra-plugin-stealth";
 import { writeFileSync } from "node:fs";
+import { fileURLToPath } from "url";
 
 const source_info = [
   {
@@ -25,7 +26,12 @@ const source_info = [
   },
 ];
 
-async function saveUrlAsHTML(browser, url, waitId='div#mw-content-text', saveName='untitled') {
+async function saveUrlAsHTML(
+  browser,
+  url,
+  waitId = "div#mw-content-text",
+  saveName = "untitled"
+) {
   let newPage = await browser.newPage();
   //page.setDefaultTimeout(60*1000);
   console.log(`will save: ${url} => ${saveName}`);
@@ -53,16 +59,25 @@ async function savePages() {
   // call the fetch function async
   let allFetchPromise = [];
   for (let i = 0; i < source_info.length; i++) {
-    allFetchPromise.push(saveUrlAsHTML(
-      browser,
-      source_info[i]["url"],
-      source_info[i]["waitTagId"],
-      source_info[i]["name"]
-    ));
+    allFetchPromise.push(
+      saveUrlAsHTML(
+        browser,
+        source_info[i]["url"],
+        source_info[i]["waitTagId"],
+        source_info[i]["name"]
+      )
+    );
   }
   await Promise.all(allFetchPromise);
 
+  console.log("Warning: just a bug, throwing an exception");
+  // TODO: use stealth plugin to fetch cloudflare but page.close() will crash
   await browser.close();
+}
+
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  console.log("downloading...");
+  await savePages();
 }
 
 export { savePages };
