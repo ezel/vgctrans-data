@@ -4,8 +4,9 @@
   "description": "data crawler for vgctrans",
   "main": "main.js",
   "scripts": {
-    "test": "tsc && node out/main.js",
-    "compile": "tsc main.ts"
+    "test": "node main.mjs",
+    "fetch": "node fetcher.mjs",
+    "convert": "node converter.mjs"
   },
   "repository": {
     "type": "git",
@@ -13,8 +14,7 @@
   },
   "keywords": [
     "vgc",
-    "crawler",
-    "typescript"
+    "translator"
   ],
   "author": "martin",
   "license": "GPL-3.0",
@@ -23,8 +23,7 @@
   },
   "homepage": "https://github.com/ezel/vgctrans-data#readme",
   "devDependencies": {
-    "@types/node": "^20.11.30",
-    "typescript": "^5.4.3"
+    "@types/node": "^20.11.30"
   },
   "dependencies": {
     "node-html-parser": "^6.1.12",
