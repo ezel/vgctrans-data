@@ -92,7 +92,7 @@ function convertSomeLangTables(fPath, position = 0) {
 /*
   main functions to convert
 */
-const source_info = [
+const source_infos = [
   { name: "ability", fPath: "savePages/abilities.html", position: 0 },
   {
     name: "item",
@@ -109,10 +109,16 @@ function convertHTML(info) {
   return res;
 }
 
+function convertAndSaveToJSON(infos=source_infos) {
+    infos.map((info) => {
+        let tmp = convertHTML(info);
+        writeFileSync(path.join('out',`${info.name}.json`), JSON.stringify(tmp));
+      });
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   console.log("converting...");
-  source_info.map((info) => {
-    let tmp = convertHTML(info);
-    writeFileSync(path.join('out',`${info.name}.json`), JSON.stringify(tmp));
-  });
+  convertAndSaveToJSON();
 }
+
+export { convertAndSaveToJSON };
