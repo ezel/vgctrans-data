@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node main.mjs",
     "fetch": "node fetcher.mjs",
-    "convert": "node converter.mjs"
+    "convert": "node converter.mjs",
+    "clean": "rm out/*.json savePages/*.html"
   },
   "repository": {
     "type": "git",
