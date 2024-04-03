@@ -2,7 +2,7 @@
   "name": "vgctrans-data",
   "version": "1.0.0",
   "description": "data crawler for vgctrans",
-  "main": "main.js",
+  "main": "main.mjs",
   "scripts": {
     "test": "node main.mjs",
     "fetch": "node fetcher.mjs",
