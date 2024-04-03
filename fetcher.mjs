@@ -1,7 +1,8 @@
 import puppeteer from "puppeteer-extra";
 import createPuppeteerStealth from "puppeteer-extra-plugin-stealth";
-import { writeFileSync } from "node:fs";
+import { writeFileSync, mkdir } from "node:fs";
 import { fileURLToPath } from "url";
+import * as path from "path";
 
 const source_info = [
   {
@@ -17,7 +18,7 @@ const source_info = [
   {
     name: "items",
     url: "https://bulbapedia.bulbagarden.net/wiki/List_of_items_in_other_languages",
-    waitTagId: "span#Medicines",
+    waitTagId: "span#Wonder_Launcher",
   },
   {
     name: "natures",
@@ -42,11 +43,14 @@ async function saveUrlAsHTML(
   });
 
   const body = await newPage.content();
-  writeFileSync(`savePages/${saveName}.html`, body);
+  writeFileSync(path.join('savePages', `/${saveName}.html`), body);
   return newPage;
 }
 
-async function savePages() {
+async function savePages(infos=source_info) {
+  mkdir("./savePages", { recursive: false }, (err) => {
+    if (err) {console.log(err);};
+  });
   // init browser
   const puppeteerStealth = createPuppeteerStealth();
   //puppeteerStealth.enabledEvasions.delete('user-agent-override');
