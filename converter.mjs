@@ -47,7 +47,7 @@ function concatLangTablesArray(arrayOfTables) {
 
   // do the concat
   // init res
-  let res = { title: [firstTitle], body: [] };
+  let res = { title: firstTitle, body: [] };
   for (let _ of firstTitle) {
     res.body.push([]);
   }
